@@ -2,9 +2,9 @@
 
 services:
 
-  spring:
+  application:
     container_name: spring
-    build: . # relative path to Dockerfile
+    build: .
     ports:
       - 8080:8080
     depends_on:
@@ -26,7 +26,7 @@ services:
       MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: password
     healthcheck:
-      test: ["CMD", "mysqladmin" ,"ping"]
+      test: "mysqladmin ping"
       interval: 3s
       retries: 10
 
@@ -36,6 +36,6 @@ services:
     ports:
       - 6379:6379
     healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
+      test: "redis-cli ping"
       interval: 3s
       retries: 10
