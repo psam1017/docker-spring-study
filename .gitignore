@@ -5,7 +5,8 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-mysql
+### Custom ###
+mariadb
 
 ### STS ###
 .apt_generated

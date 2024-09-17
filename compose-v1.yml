@@ -1,8 +1,10 @@
+# db connection 생성을 위해 mysql 을 spring app 보다 먼저 실행시켜야 한다.
+
 services:
 
-  application:
+  spring:
     container_name: spring
-    build: .
+    build: . # relative path to Dockerfile
     ports:
       - 8080:8080
     depends_on:
@@ -24,7 +26,7 @@ services:
       MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: password
     healthcheck:
-      test: "mysqladmin ping"
+      test: ["CMD", "mysqladmin" ,"ping"]
       interval: 3s
       retries: 10
 
@@ -34,6 +36,6 @@ services:
     ports:
       - 6379:6379
     healthcheck:
-      test: "redis-cli ping"
+      test: ["CMD", "redis-cli", "ping"]
       interval: 3s
       retries: 10

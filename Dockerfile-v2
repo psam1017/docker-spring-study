@@ -1,3 +1,4 @@
+# source : https://velog.io/@wontaekoh/SpringBoot-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%EC%97%90%EC%84%9C-Docker-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%9A%A9%EB%9F%89-%EC%B5%9C%EC%A0%81%ED%99%94%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95
 FROM amazoncorretto:17-alpine3.18 as builder-jre
 
 RUN apk add --no-cache binutils
