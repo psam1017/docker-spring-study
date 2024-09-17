@@ -6,7 +6,7 @@ build/
 !**/src/test/**/build/
 
 ### Custom ###
-mariadb
+mariadb/data
 
 ### STS ###
 .apt_generated
