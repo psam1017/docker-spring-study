@@ -3,10 +3,6 @@ services:
   application:
     container_name: spring
     build: .
-    environment:
-      TZ: Asia/Seoul
-      COMPOSE_PROJECT_NAME: project
-      IMAGE_TAG: latest
     ports:
       - 8080:8080
     depends_on:
@@ -40,6 +36,8 @@ services:
     image: redis
     ports:
       - 6379:6379
+    environment:
+      TZ: Asia/Seoul
     healthcheck:
       test: "redis-cli ping"
       interval: 3s

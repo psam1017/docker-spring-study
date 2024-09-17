@@ -18,6 +18,7 @@ FROM alpine:3.18.4
 MAINTAINER Psam1017
 EXPOSE 8080
 
+ENV TZ=Asia/Seoul
 ENV JAVA_HOME=/jre
 ENV PATH="$JAVA_HOME/bin:$PATH"
 ENV APP_PATH=/home/ubuntu/app
@@ -25,6 +26,7 @@ ENV APP_PROFILE=default
 
 COPY --from=builder-jre /jre $JAVA_HOME
 
+RUN apk add --no-cache tzdata
 RUN apk add --no-cache bash
 RUN mkdir -p $APP_PATH
 WORKDIR $APP_PATH
