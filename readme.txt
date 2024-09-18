@@ -9,3 +9,5 @@ $ docker compose up -d --build
 2. 타임존 설정 추가
 
 3. mysql 에서 mariadb 로 변경 및 encoding 커스텀(utf8mb4)
+
+4. nginx 추가 및 백엔드와 맵핑 설정

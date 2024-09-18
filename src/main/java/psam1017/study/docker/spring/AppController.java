@@ -10,20 +10,16 @@ import java.util.Map;
 @RestController
 public class AppController {
 
-    @GetMapping("")
+    @GetMapping("/api/app")
     public Map<String, String> getInfo(HttpServletRequest request) {
         Map<String, String> response = new HashMap<>();
 
-        if (request.getHeader("X-Real-IP") != null) {
-            response.put("X-Real-IP", request.getHeader("X-Real-IP"));
-        }
-        if (request.getHeader("X-Forwarded-For") != null) {
-            response.put("X-Forwarded-For", request.getHeader("X-Forwarded-For"));
+        if (request.getHeader("X-Real_IP") != null) {
+            response.put("X-Real-IP", request.getHeader("X-Real_IP"));
         }
         if (request.getHeader("Host") != null) {
             response.put("Host", request.getHeader("Host"));
         }
-
         return response;
     }
 }
