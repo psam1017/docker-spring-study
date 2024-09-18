@@ -14,11 +14,11 @@ public class AppController {
     public Map<String, String> getInfo(HttpServletRequest request) {
         Map<String, String> response = new HashMap<>();
 
-        if (request.getHeader("X-Real_IP") != null) {
-            response.put("X-Real-IP", request.getHeader("X-Real_IP"));
-        }
         if (request.getHeader("Host") != null) {
             response.put("Host", request.getHeader("Host"));
+        }
+        if (request.getHeader("X-Real_IP") != null) {
+            response.put("X-Real-IP", request.getHeader("X-Real_IP"));
         }
         return response;
     }
