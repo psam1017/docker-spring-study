@@ -1,0 +1,57 @@
+services:
+
+  nginx:
+    container_name: nginx
+    image: nginx:1.22-alpine
+    ports:
+      - 80:80
+      - 443:443
+    restart: unless-stopped
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+
+  application:
+    container_name: spring
+    build:
+        context: ./
+        dockerfile: Dockerfile-v5
+    ports:
+      - 8080:8080
+    depends_on:
+      mariadb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  mariadb:
+    container_name: mariadb
+    image: mariadb:11.2
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mariadb/data:/var/lib/mysql:Z
+      - ./mariadb/config:/etc/mysql/conf.d
+    environment:
+      TZ: Asia/Seoul
+      MARIADB_DATABASE: mydb
+      MARIADB_ROOT_PASSWORD: password
+      MARIADB_USER: username
+      MARIADB_PASSWORD: password
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      start_period: 5s
+      interval: 3s
+      retries: 10
+
+  redis:
+    container_name: redis
+    image: redis
+    ports:
+      - 6379:6379
+    environment:
+      TZ: Asia/Seoul
+    healthcheck:
+      test: "redis-cli ping"
+      interval: 3s
+      retries: 10
