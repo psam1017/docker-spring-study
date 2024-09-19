@@ -14,3 +14,9 @@ $ docker compose up -d --build
 
 5. docker swarm 사용
 
+6. spring profile 분리
+- Dockerfile 에 별도로 프로필이 존재하는 건 아니고, 그냥 파일 이름을 명시하여 구분한다. 별도의 Dockerfile 에서 내부적으로 실행시킬 프로필 값을 별도로 명시하면 된다.
+$ docker compose -f compose-v5.yml up -d --build
+
+- swarm 모드에서는 사용할 이미지를 미리 빌드해야 하는데, 이 이미지를 빌드할 때 ENTRYPOINT 에서 실행시킬 프로필 값을 별도로 명시한 Dockerfile 로 빌드하면 된다.
+$ docker stack deploy -c compose-v6.yml project
